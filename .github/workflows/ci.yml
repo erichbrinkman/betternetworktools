@@ -1,0 +1,108 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python-locks:
+    name: Python locks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.14"
+
+      - name: Install locked Python tooling
+        run: python -m pip install --require-hashes -r backend/requirements.lock
+
+      - name: Verify Python resolution and export are current
+        run: |
+          uv lock --project backend --check
+          uv export --quiet --project backend --all-extras --no-emit-project --format requirements.txt --output-file backend/requirements.lock --locked
+          git diff --exit-code -- backend/uv.lock backend/requirements.lock
+
+  web:
+    name: Web
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22.23.1
+
+      - name: Enable the pinned pnpm version
+        run: |
+          corepack enable
+          pnpm --version
+
+      - name: Install web dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Build and test
+        run: pnpm run test
+
+      - name: Audit dependencies
+        run: pnpm audit --audit-level=moderate
+
+  backend:
+    name: Backend (${{ matrix.os }}, Python ${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: "3.11"
+          - os: ubuntu-latest
+            python: "3.14"
+          - os: macos-latest
+            python: "3.11"
+          - os: windows-latest
+            python: "3.11"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install locked backend dependencies
+        run: python -m pip install --require-hashes -r backend/requirements.lock
+
+      - name: Install Better Network Tools
+        run: python -m pip install --no-build-isolation --no-deps -e backend
+
+      - name: Run backend tests
+        run: python -m pytest backend
+
+      - name: Audit Python dependencies
+        run: python -m pip_audit --require-hashes -r backend/requirements.lock

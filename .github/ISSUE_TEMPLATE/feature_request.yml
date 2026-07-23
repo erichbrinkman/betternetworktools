@@ -1,0 +1,62 @@
+name: Feature request
+description: Propose a focused improvement or new capability
+title: "[Feature]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the user need before the implementation.
+
+        **Do not include credentials, private keys, tokens, customer data, real device inventories, packet contents, or other sensitive network information.** Security vulnerabilities belong in a private security advisory.
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: This proposal contains no sensitive data and is not a vulnerability report.
+          required: true
+        - label: I understand that network-facing features must remain authorized, bounded, cancellable, and local-first.
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What authorized workflow is difficult today, and who experiences it?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed outcome
+      description: Describe the behavior and user experience, not only an implementation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Include current workarounds and why they are insufficient.
+
+  - type: textarea
+    id: safety_privacy
+    attributes:
+      label: Security and privacy impact
+      description: Address target scope, network exposure, credentials, retained data, external services, resource limits, and cancellation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: platform
+    attributes:
+      label: Platform and compatibility
+      description: Note macOS/Windows requirements, protocols, or dependency changes.
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Use synthetic examples and sanitized mockups only.

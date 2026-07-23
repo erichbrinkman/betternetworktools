@@ -1,0 +1,111 @@
+name: Bug report
+description: Report a reproducible problem in Better Network Tools
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug.
+
+        **Do not post security vulnerabilities, credentials, private keys, tokens, device inventories, packet contents, or unredacted logs/screenshots.** Report vulnerabilities with the private security advisory link shown on the issue chooser.
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed sensitive data and tested only on systems and networks I am authorized to use.
+          required: true
+        - label: This is not a security vulnerability.
+          required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Use the tag or output of `git rev-parse --short HEAD`.
+      placeholder: v0.1.0 or abc1234
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Windows
+        - Other or unsupported
+    validations:
+      required: true
+
+  - type: input
+    id: runtime
+    attributes:
+      label: Runtime versions
+      description: Include OS version, Python, Node.js, and pnpm versions.
+      placeholder: macOS 15.x; Python 3.12.x; Node 22.x; pnpm 11.9.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Affected area
+      options:
+        - Setup or launcher
+        - Dashboard or navigation
+        - NetScanner
+        - NetPorts
+        - NetPinger
+        - NetSpeed
+        - NetTransfer
+        - NetTrace
+        - QuickSSH or Telnet
+        - MAC OUI Lookup
+        - Subnet Calculator
+        - Updates
+        - Feedback
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Use sanitized example values and the smallest reliable sequence.
+      placeholder: |
+        1. Start the app with ...
+        2. Open ...
+        3. Enter a sanitized test value ...
+        4. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized diagnostics
+      description: Optional. Paste only the relevant excerpt after removing secrets, addresses, hostnames, usernames, paths, and inventory details.
+      render: shell
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Include configuration changes or workarounds without pasting your `.env`.

@@ -1,0 +1,14 @@
+allowBuilds:
+  esbuild: set this to true or false
+  "esbuild@0.25.12 || 0.28.1": true
+  "sharp@0.35.0": true
+  "unrs-resolver@1.12.2": true
+  workerd: set this to true or false
+  "workerd@1.20260721.1": true
+
+overrides:
+  "@esbuild-kit/core-utils>esbuild": "0.25.12"
+  "ajv>fast-uri": "3.1.4"
+  "miniflare@4.20260721.0>sharp": "0.35.0"
+  "next@16.2.11>postcss": "8.5.16"
+  "next@16.2.11>sharp": "0.35.0"

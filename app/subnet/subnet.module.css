@@ -1,0 +1,480 @@
+.page {
+  --subnet-surface: #17191b;
+  --subnet-surface-raised: #1d2023;
+  --subnet-border: #363a3f;
+  --subnet-border-strong: #50555b;
+  --subnet-text: #f0f1f2;
+  --subnet-muted: #a8adb3;
+  --subnet-dim: #7f858c;
+  --subnet-accent: #d2d5d8;
+  margin: 0 auto;
+  max-width: 1240px;
+  padding: 54px clamp(22px, 4vw, 64px) 80px;
+}
+
+.heading {
+  max-width: 720px;
+  margin-bottom: 30px;
+}
+
+.eyebrow,
+.resultLabel {
+  color: var(--subnet-dim);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.heading h1 {
+  color: var(--subnet-text);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 680;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin: 0;
+}
+
+.heading > p:last-child {
+  color: var(--subnet-muted);
+  font-size: 1rem;
+  margin: 14px 0 0;
+  max-width: 650px;
+}
+
+.calculator {
+  display: grid;
+  gap: 18px;
+}
+
+.inputPanel,
+.panel,
+.resultHeader {
+  background: var(--subnet-surface);
+  border: 1px solid var(--subnet-border);
+  border-radius: 12px;
+}
+
+.inputPanel,
+.panel {
+  padding: 24px;
+}
+
+.panelHeading {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+}
+
+.panelHeading h2 {
+  color: var(--subnet-text);
+  font-size: 1rem;
+  font-weight: 680;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.panelHeading p {
+  color: var(--subnet-dim);
+  font-size: 0.82rem;
+  margin: 4px 0 0;
+}
+
+.form {
+  align-items: end;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(260px, 1fr) 150px auto;
+  margin-top: 20px;
+}
+
+.addressField,
+.prefixField {
+  display: grid;
+  gap: 7px;
+}
+
+.addressField label,
+.prefixField label {
+  color: var(--subnet-muted);
+  font-size: 0.79rem;
+  font-weight: 650;
+}
+
+.addressField input,
+.prefixControl {
+  background: #111315;
+  border: 1px solid var(--subnet-border);
+  border-radius: 8px;
+  min-height: 46px;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.addressField input {
+  color: var(--subnet-text);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.92rem;
+  outline: none;
+  padding: 0 13px;
+  width: 100%;
+}
+
+.addressField input:hover,
+.prefixControl:hover {
+  border-color: var(--subnet-border-strong);
+}
+
+.addressField input:focus,
+.prefixControl:focus-within {
+  border-color: #8b9197;
+  box-shadow: 0 0 0 3px rgba(210, 213, 216, 0.1);
+}
+
+.addressField input[aria-invalid="true"] {
+  border-color: #b67878;
+}
+
+.prefixControl {
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+}
+
+.prefixControl span {
+  color: var(--subnet-dim);
+  font-family: var(--font-mono), monospace;
+  padding-left: 13px;
+}
+
+.prefixControl input {
+  appearance: textfield;
+  background: transparent;
+  border: 0;
+  color: var(--subnet-text);
+  flex: 1;
+  font-family: var(--font-mono), monospace;
+  height: 44px;
+  min-width: 0;
+  outline: none;
+  padding: 0 10px 0 4px;
+  width: 100%;
+}
+
+.prefixControl input::-webkit-inner-spin-button,
+.prefixControl input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.prefixControl input:disabled {
+  color: var(--subnet-dim);
+  cursor: not-allowed;
+}
+
+.fieldHelp {
+  color: var(--subnet-dim);
+  font-size: 0.72rem;
+  min-height: 1.1em;
+}
+
+.calculateButton {
+  align-items: center;
+  background: var(--subnet-accent);
+  border: 1px solid var(--subnet-accent);
+  border-radius: 8px;
+  color: #17191b;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.84rem;
+  font-weight: 720;
+  height: 46px;
+  justify-content: center;
+  margin-bottom: calc(0.72rem + 7px);
+  padding: 0 22px;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+
+.calculateButton:hover {
+  background: #eef0f2;
+  border-color: #eef0f2;
+}
+
+.error {
+  background: rgba(174, 91, 91, 0.1);
+  border: 1px solid rgba(190, 104, 104, 0.4);
+  border-radius: 8px;
+  color: #e1adad;
+  font-size: 0.82rem;
+  margin: 16px 0 0;
+  padding: 10px 12px;
+}
+
+.examples {
+  align-items: center;
+  border-top: 1px solid var(--subnet-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 15px;
+}
+
+.examples > span {
+  color: var(--subnet-dim);
+  font-size: 0.72rem;
+  font-weight: 650;
+  margin-right: 2px;
+  text-transform: uppercase;
+}
+
+.examples button,
+.copyButton,
+.inlineCopy {
+  background: transparent;
+  border: 1px solid var(--subnet-border);
+  color: var(--subnet-muted);
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+
+.examples button {
+  border-radius: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  padding: 6px 9px;
+}
+
+.examples button:hover,
+.copyButton:hover,
+.inlineCopy:hover {
+  background: var(--subnet-surface-raised);
+  border-color: var(--subnet-border-strong);
+  color: var(--subnet-text);
+}
+
+.resultHeader {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 20px 24px;
+}
+
+.resultHeader h2 {
+  color: var(--subnet-text);
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-weight: 620;
+  margin: 0;
+}
+
+.copyButton {
+  border-radius: 7px;
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  min-width: 84px;
+  padding: 8px 12px;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tagRow span {
+  background: var(--subnet-surface-raised);
+  border: 1px solid var(--subnet-border);
+  border-radius: 999px;
+  color: var(--subnet-muted);
+  font-size: 0.72rem;
+  padding: 5px 10px;
+}
+
+.resultGrid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.75fr);
+}
+
+.detailsList,
+.capacityList,
+.binaryList {
+  margin: 18px 0 0;
+}
+
+.detailRow,
+.binaryRow {
+  align-items: center;
+  border-top: 1px solid var(--subnet-border);
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(130px, 0.75fr) minmax(0, 1.25fr);
+  min-height: 50px;
+}
+
+.detailRow dt,
+.binaryRow dt {
+  color: var(--subnet-dim);
+  font-size: 0.77rem;
+}
+
+.detailRow dd,
+.binaryRow dd {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin: 0;
+  min-width: 0;
+}
+
+.detailRow code,
+.binaryRow code {
+  color: var(--subnet-text);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  overflow-wrap: anywhere;
+}
+
+.inlineCopy {
+  border-radius: 5px;
+  flex: 0 0 auto;
+  font-size: 0.66rem;
+  min-width: 48px;
+  padding: 5px 7px;
+}
+
+.capacityList {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.capacityList > div {
+  background: var(--subnet-surface-raised);
+  min-height: 96px;
+  padding: 15px;
+}
+
+.capacityList > div:first-child {
+  border-radius: 8px 0 0 0;
+}
+
+.capacityList > div:nth-child(2) {
+  border-radius: 0 8px 0 0;
+}
+
+.capacityList > div:nth-child(3) {
+  border-radius: 0 0 0 8px;
+}
+
+.capacityList > div:last-child {
+  border-radius: 0 0 8px 0;
+}
+
+.capacityList dt {
+  color: var(--subnet-dim);
+  font-size: 0.7rem;
+}
+
+.capacityList dd {
+  color: var(--subnet-text);
+  font-family: var(--font-mono), monospace;
+  font-size: 1.1rem;
+  margin: 8px 0 0;
+}
+
+.capacityNote {
+  border-left: 2px solid var(--subnet-border-strong);
+  color: var(--subnet-muted);
+  font-size: 0.76rem;
+  line-height: 1.55;
+  margin: 17px 0 0;
+  padding-left: 11px;
+}
+
+.binaryPanel {
+  overflow: hidden;
+}
+
+.binaryRow {
+  grid-template-columns: minmax(130px, 0.45fr) minmax(0, 1.55fr);
+}
+
+.binaryRow code {
+  letter-spacing: 0.015em;
+}
+
+.copyStatus {
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  clip: rect(0 0 0 0);
+}
+
+@media (max-width: 840px) {
+  .form {
+    grid-template-columns: minmax(0, 1fr) 130px;
+  }
+
+  .calculateButton {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  .resultGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding-bottom: 50px;
+    padding-top: 34px;
+  }
+
+  .inputPanel,
+  .panel {
+    padding: 18px;
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .calculateButton {
+    grid-column: auto;
+  }
+
+  .resultHeader {
+    align-items: flex-start;
+    padding: 18px;
+  }
+
+  .detailRow,
+  .binaryRow {
+    align-items: start;
+    gap: 5px;
+    grid-template-columns: 1fr;
+    padding: 11px 0;
+  }
+
+  .binaryRow code {
+    font-size: 0.69rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .addressField input,
+  .prefixControl,
+  .calculateButton,
+  .examples button,
+  .copyButton,
+  .inlineCopy {
+    transition: none;
+  }
+}

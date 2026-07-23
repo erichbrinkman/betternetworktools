@@ -1,0 +1,59 @@
+name: Support question
+description: Ask a non-sensitive setup or usage question
+title: "[Support]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Support is best effort for the v0.1.0 source preview. Read `SUPPORT.md` and search existing issues first.
+
+        **Never paste your `.env`, credentials, private keys, tokens, device inventory, terminal history, packet contents, or unredacted logs/screenshots.** Use a private security advisory for suspected vulnerabilities.
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and reviewed `README.md` and `SUPPORT.md`.
+          required: true
+        - label: I removed sensitive data and this is not a security vulnerability.
+          required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What are you trying to accomplish, and where are you blocked?
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v0.1.0 or abc1234
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS, Python, Node.js, and pnpm versions.
+      placeholder: Windows 11; Python 3.12.x; Node 22.x; pnpm 11.9.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: attempts
+    attributes:
+      label: What have you tried?
+      description: Include sanitized commands and exact error text, but no secrets or real network inventory.
+    validations:
+      required: true
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Relevant configuration changes
+      description: Name changed variables and sanitized values; do not paste the full `.env`.

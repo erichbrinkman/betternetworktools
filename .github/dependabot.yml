@@ -1,0 +1,18 @@
+version: 2
+
+updates:
+  # GitHub currently supports pnpm dependency updates through v10. Keep web
+  # updates manual and audited in CI until Dependabot supports pinned pnpm 11.
+  - package-ecosystem: uv
+    directory: /backend
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5

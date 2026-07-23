@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/erichbrinkman/betternetworktools/security/advisories/new
+    about: Use GitHub's private security advisory form. Never report a vulnerability publicly.
+  - name: Read the support guide
+    url: https://github.com/erichbrinkman/betternetworktools/blob/main/SUPPORT.md
+    about: Review supported use, troubleshooting, and sensitive-data guidance.
+  - name: Send private product feedback
+    url: https://better-network-tools-suite.erichbrinkman.chatgpt.site/
+    about: Send a suggestion privately; do not use this form for vulnerabilities.
