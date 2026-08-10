@@ -28,7 +28,7 @@ dependencies = [
   "mac-vendor-lookup>=0.1.15,<0.2",
   "pydantic>=2.9,<3.0",
   "pyftpdlib>=2.2,<3.0",
-  "uvicorn[standard]>=0.51.0,<1.0",
+  "uvicorn[standard]>=0.52.1,<1.0",
 ]
 
 [project.optional-dependencies]
